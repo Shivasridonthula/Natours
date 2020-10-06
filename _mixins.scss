@@ -1,0 +1,35 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+
+// Media query manager
+// 0 - 600 px phones
+// 600 - 900 px tablet potrait
+// 800 - 1200 px tablet landscape
+// 1200 - 1800 px laptops , desktops (this is what we usually code for)
+// From 1800px and more Big desktops
+
+//It is suggested to use 'em' unit in media queries instead of rem, % and px.
+//For media queries global font-size set is not applicable. Browser default width is considered.
+//1 em = 16px
+
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width:37.5em) { @content } ; //600px = 37.5em (600/16)
+  }
+  @if $breakpoint == tab-potrait {
+    @media only screen and (max-width:56.25em) { @content } ; //900px = 56.25em (900/16)
+  }
+  @if $breakpoint == tab-landscape {
+    @media only screen and (max-width:75em) { @content } ; //1200px = 75em (1200/16)
+  }
+  @if $breakpoint == bigdesktop {
+    @media only screen and (min-width:112.5em) { @content } ; //1800px = 112.5em (1800/16)
+  }
+}
